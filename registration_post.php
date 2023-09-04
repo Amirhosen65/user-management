@@ -76,6 +76,6 @@ if($name && $email && $password) {
     include('./success_message/success.php');
 }
 
-
+    
 
 ?>
