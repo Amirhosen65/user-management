@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,14 +53,25 @@
             <div class="logo">
                 <a href="index.html">Neptune</a>
             </div>
-            <p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="sign_up.php">Sign Up</a></p>
+            <p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="registration.php">Sign Up</a></p>
+
+            <?php if(isset($_SESSION['registraion_success'])) : ?>
+            <div class="alert alert-custom" role="alert">
+                <div class="custom-alert-icon icon-danger"><i class="material-icons-outlined">close</i></div>
+                <div class="alert-content">
+                    <span class="alert-title">Sorry</span>
+                    <span class="alert-text"><?= $_SESSION['registraion_success'] ?></span>
+                </div>
+            </div>
+            <?php endif; unset($_SESSION['registraion_success']); ?>
+
 
             <div class="auth-credentials m-b-xxl">
                 <label for="signInEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com">
+                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>">
 
                 <label for="signInPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                <input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>">
             </div>
 
             <div class="auth-submit">

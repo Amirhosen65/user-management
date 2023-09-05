@@ -58,6 +58,17 @@ session_start();
             <p class="auth-description">Please enter your credentials to create an account.<br>Already have an account? <a href="login.php">Sign In</a></p>
 
             <form action="registration_post.php" method="post">
+
+            <?php if(isset($_SESSION['registraion_failed'])) : ?>
+            <div class="alert alert-custom" role="alert">
+                <div class="custom-alert-icon icon-danger"><i class="material-icons-outlined">close</i></div>
+                <div class="alert-content">
+                    <span class="alert-title">Registration failed!</span>
+                    <span class="alert-text"><?= $_SESSION['registraion_failed'] ?></span>
+                </div>
+            </div>
+            <?php endif; unset($_SESSION['registraion_failed']); ?>
+
             <div class="auth-credentials m-b-xxl">
                 <label for="signUpUsername" class="form-label">Name</label>
                 <input type="text" class="form-control m-b-md <?= (isset($_SESSION['name_error'])) ? 'is-invalid' : ' ' ?>" id="signUpUsername" name="name" aria-describedby="signUpUsername" placeholder="Enter Name">
