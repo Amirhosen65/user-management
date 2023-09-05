@@ -86,6 +86,7 @@ if($name && $email && $password && $con_password) {
         $_SESSION['s_user'] = $name;
         $_SESSION['s_email'] = $email;
         $_SESSION['s_password'] = $password;
+        $_SESSION['registraion_success'] = "Registraion Successfull!";
 
         // header("location: login.php");
 

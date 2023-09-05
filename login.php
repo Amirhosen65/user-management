@@ -21,6 +21,7 @@ session_start();
     <title>Neptune - Responsive Admin Dashboard Template</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -53,31 +54,66 @@ session_start();
             <div class="logo">
                 <a href="index.html">Neptune</a>
             </div>
-            <p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="registration.php">Sign Up</a></p>
+            <p class="auth-description">Please Log-in to your account and continue to the dashboard.<br>Don't have an account? <a href="registration.php">Register</a></p>
+
+            <form action="log_in_post.php" method="POST">
+
 
             <?php if(isset($_SESSION['registraion_success'])) : ?>
             <div class="alert alert-custom" role="alert">
-                <div class="custom-alert-icon icon-danger"><i class="material-icons-outlined">close</i></div>
+                <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
                 <div class="alert-content">
-                    <span class="alert-title">Sorry</span>
-                    <span class="alert-text"><?= $_SESSION['registraion_success'] ?></span>
+                    <span class="alert-title">Welcome, <?= $_SESSION['s_user'] ?></span>
+                    <!-- <span class="alert-text"><?= $_SESSION['registraion_success'] ?></span> -->
                 </div>
             </div>
             <?php endif; unset($_SESSION['registraion_success']); ?>
 
+            <?php if(isset($_SESSION['login_failed'])) : ?>
+            <div class="alert alert-custom" role="alert">
+                <div class="custom-alert-icon icon-danger"><i class="material-icons-outlined">close</i></div>
+                <div class="alert-content">
+                    <span class="alert-title">Log In Failed!</span>
+                    <span class="alert-text"><?= $_SESSION['login_failed'] ?></span>
+                </div>
+            </div>
+            <?php endif; unset($_SESSION['login_failed']); ?>
+
 
             <div class="auth-credentials m-b-xxl">
                 <label for="signInEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>">
+                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>" name="email">
 
-                <label for="signInPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>">
+                <div class="password-input">
+                    
+                    <label for="signInPassword" class="form-label">Password</label>
+                    <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                    <input type="password" class="form-control" id="id_password" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>" name="password">
+                </div>
+
+
+                
+
             </div>
+
+            <script>
+                const togglePassword = document.querySelector('#togglePassword');
+                const password = document.querySelector('#id_password');
+
+                togglePassword.addEventListener('click', function (e) {
+                    // toggle the type attribute
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', type);
+                    // toggle the eye slash icon
+                    this.classList.toggle('fa-eye-slash');
+                });
+            </script>
 
             <div class="auth-submit">
-                <a href="#" class="btn btn-primary">Sign In</a>
+                <button type="submit" class="btn btn-primary">Sign In</a>
             </div>
-            <div class="divider"></div>            
+            <div class="divider"></div>   
+            </form>         
         </div>
     </div>
     

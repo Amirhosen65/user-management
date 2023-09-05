@@ -55,7 +55,7 @@ session_start();
             <div class="logo">
                 <a href="index.html">Neptune</a>
             </div>
-            <p class="auth-description">Please enter your credentials to create an account.<br>Already have an account? <a href="login.php">Sign In</a></p>
+            <p class="auth-description">Please enter your credentials to create an account.<br>Already have an account? <a href="login.php">Log In</a></p>
 
             <form action="registration_post.php" method="post">
 
@@ -119,7 +119,7 @@ session_start();
             </div>
 
             <div class="auth-submit">
-                <button type="submit" class="btn btn-primary">Sign Up</a>
+                <button type="submit" class="btn btn-primary">Register</a>
             </div>
             <div class="divider"></div>   
         </form>         
