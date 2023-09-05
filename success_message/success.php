@@ -2,6 +2,9 @@
   <head>
     <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,400i,700,900&display=swap" rel="stylesheet">
   </head>
+
+  <meta http-equiv="refresh" content="2;url=login.php">
+
     <style>
       body {
         text-align: center;
@@ -9,7 +12,7 @@
         background: #EBF0F5;
       }
         h1 {
-          color: #88B04B;
+          color: #0D6EFD;
           font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
           font-weight: 900;
           font-size: 40px;
@@ -22,7 +25,7 @@
           margin: 0;
         }
       i {
-        color: #9ABC66;
+        color: #0D6EFD;
         font-size: 100px;
         line-height: 200px;
         margin-left:-15px;
@@ -42,7 +45,7 @@
         <i class="checkmark">✓</i>
       </div>
         <h1>Success</h1> 
-        <p>We received your purchase request;<br/> we'll be in touch shortly!</p>
+        <p>Your registration has been succesfull;<br/> Redirect to Log In page shortly!</p>
       </div>
     </body>
 </html>
