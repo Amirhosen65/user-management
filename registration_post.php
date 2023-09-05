@@ -14,14 +14,13 @@ if($name){
         $_SESSION['name_error'] = "Only letters and white space allowed";
     header("location: registration.php");
     }else{
-        // echo "Name: " . $name;
+        
     }
 }else{
     $_SESSION['name_error'] = "Please Enter Name";
     header("location: registration.php");
 }
 
-echo "<br>";
 
 if($email){
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -35,7 +34,6 @@ if($email){
     header("location: registration.php");
 }
 
-echo "<br>";
 
 if($password){
     if(!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[0-9A-Za-z!@#$%]{8,12}$/', $password)){
@@ -50,21 +48,19 @@ if($password){
 }
 
 
-echo "<br>";
 
 if($con_password){
     if($password == $con_password){
         // echo "Password Matched!";
     }else{
         $_SESSION['con_password_error'] = "Confirm Password Not Match!";
-    header("location: registration.php");
+        header("location: registration.php");
     }
 }else{
     $_SESSION['con_password_error'] = "Please Enter Confirm Password!";
     header("location: registration.php");
 }
 
-echo "<br>";
 
 if($name && $email && $password && $con_password) {
 

@@ -64,7 +64,7 @@ session_start();
                 <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
                 <div class="alert-content">
                     <span class="alert-title">Welcome, <?= $_SESSION['s_user'] ?></span>
-                    <!-- <span class="alert-text"><?= $_SESSION['registraion_success'] ?></span> -->
+                    <span class="alert-text">Log in now!</span>
                 </div>
             </div>
             <?php endif; unset($_SESSION['registraion_success']); ?>
@@ -79,16 +79,26 @@ session_start();
             </div>
             <?php endif; unset($_SESSION['login_failed']); ?>
 
+            <!-- <?php if(isset($_SESSION['email_empty_error'])) : ?>
+            <div class="alert alert-custom" role="alert">
+                <div class="custom-alert-icon icon-danger"><i class="material-icons-outlined">close</i></div>
+                <div class="alert-content">
+                    <span class="alert-title">Log In Failed!</span>
+                    <span class="alert-text"><?= $_SESSION['email_empty_error'] ?></span>
+                </div>
+            </div>
+            <?php endif; unset($_SESSION['login_failed']); ?> -->
+
 
             <div class="auth-credentials m-b-xxl">
                 <label for="signInEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>" name="email">
+                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>" name="email" required>
 
                 <div class="password-input">
                     
                     <label for="signInPassword" class="form-label">Password</label>
                     <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
-                    <input type="password" class="form-control" id="id_password" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>" name="password">
+                    <input type="password" class="form-control" id="id_password" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>" name="password" required>
                 </div>
 
 
@@ -101,10 +111,10 @@ session_start();
                 const password = document.querySelector('#id_password');
 
                 togglePassword.addEventListener('click', function (e) {
-                    // toggle the type attribute
+                    
                     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
                     password.setAttribute('type', type);
-                    // toggle the eye slash icon
+                    
                     this.classList.toggle('fa-eye-slash');
                 });
             </script>
@@ -126,3 +136,4 @@ session_start();
     <script src="./assets/js/custom.js"></script>
 </body>
 </html>
+
