@@ -36,6 +36,9 @@ if($email && $password){
         $_SESSION['login_failed'] = "This email was not registered!";
         header("location: login.php");
     }
+}else{
+    $_SESSION['login_failed'] = "Please enter required information!";
+    header("location: login.php");
 }
 
 

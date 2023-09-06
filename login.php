@@ -79,26 +79,26 @@ session_start();
             </div>
             <?php endif; unset($_SESSION['login_failed']); ?>
 
-            <!-- <?php if(isset($_SESSION['email_empty_error'])) : ?>
+            <?php if(isset($_SESSION['login_failed'])) : ?>
             <div class="alert alert-custom" role="alert">
                 <div class="custom-alert-icon icon-danger"><i class="material-icons-outlined">close</i></div>
                 <div class="alert-content">
                     <span class="alert-title">Log In Failed!</span>
-                    <span class="alert-text"><?= $_SESSION['email_empty_error'] ?></span>
+                    <span class="alert-text"><?= $_SESSION['login_failed'] ?></span>
                 </div>
             </div>
-            <?php endif; unset($_SESSION['login_failed']); ?> -->
+            <?php endif; unset($_SESSION['login_failed']); ?>
 
 
             <div class="auth-credentials m-b-xxl">
                 <label for="signInEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>" name="email" required>
+                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>" name="email">
 
                 <div class="password-input">
                     
                     <label for="signInPassword" class="form-label">Password</label>
                     <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
-                    <input type="password" class="form-control" id="id_password" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>" name="password" required>
+                    <input type="password" class="form-control" id="id_password" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>" name="password">
                 </div>
 
 
