@@ -48,6 +48,44 @@ include('./extends/header.php');
             </div>
         </div>
     </div>
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-header">
+                <h2>Email Update</h2>
+            </div>
+            <div class="card-body">
+                <form action="profile_update.php" method="POST">
+
+                <?php if(isset($_SESSION['email_update_success'])) : ?>
+                <div class="alert alert-custom" role="alert">
+                    <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
+                    <div class="alert-content">
+                        <span class="alert-title">Success!</span>
+                        <span class="alert-text"><?= $_SESSION['email_update_success'] ?></span>
+                    </div>
+                </div>
+                <?php endif; unset($_SESSION['email_update_success']); ?>
+                    
+                    <input type="email" class="form-control <?= (isset($_SESSION['email_error'])) ? 'is-invalid' : ' ' ?>" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="<?= $_SESSION['admin_email'] ?>">
+
+                    <?php if(isset($_SESSION['email_error'])) : ?>
+
+                    <div id="emailHelp" class="form-text text-danger"><?= $_SESSION['email_error'] ?></div>
+
+                    <?php endif; unset($_SESSION['email_error']); ?>
+
+                    <button type="submit" class="btn btn-success mt-3" name="email_update">Update</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+    
 </div>
 
 
