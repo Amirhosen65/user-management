@@ -45,6 +45,13 @@ session_start();
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+        <style>
+            .app-auth-container{
+                height: auto !important;
+            }
+        </style>
+
 </head>
 <body>
     <div class="app app-auth-sign-up align-content-stretch d-flex flex-wrap justify-content-end">
@@ -88,7 +95,6 @@ session_start();
                 <div id="emailHelp" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
                     <?= $_SESSION['email_error'] ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-
                 </div>
                 <?php endif; unset($_SESSION['email_error']) ?>
 

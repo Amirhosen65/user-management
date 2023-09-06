@@ -92,13 +92,13 @@ session_start();
 
             <div class="auth-credentials m-b-xxl">
                 <label for="signInEmail" class="form-label">Email address</label>
-                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>" name="email">
+                <input type="email" class="form-control m-b-md <?= (isset($_SESSION['login_failed'])) ? 'is-invalid' : ' ' ?>" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>" name="email">
 
                 <div class="password-input">
                     
                     <label for="signInPassword" class="form-label">Password</label>
                     <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
-                    <input type="password" class="form-control" id="id_password" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>" name="password">
+                    <input type="password" class="form-control <?= (isset($_SESSION['login_failed'])) ? 'is-invalid' : ' ' ?>" id="id_password" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>" name="password">
                 </div>
 
 
