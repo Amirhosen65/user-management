@@ -1,6 +1,6 @@
 <?php
 
-$db_connect = mysqli_connect('localhost', 'root', '', 'user_register');
+$db_connect = mysqli_connect('localhost', 'root', '@mirAJ2647', 'user_register');
 
 
 

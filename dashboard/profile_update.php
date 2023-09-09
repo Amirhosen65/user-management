@@ -49,9 +49,9 @@ if(isset($email_update_btn)){
 
 
 
-// if($email_update_btn) {
-//     $email_validity = "SELECT COUNT(*) AS validity FROM users WHERE email='$email'";
-//     $email_validity = mysqli_query($db_connect, $emai_validity);
+// if(isset($email_update_btn)) {
+//     $email_validity = "SELECT COUNT(*) AS validity FROM users WHERE email='$email_update_btn'";
+//     $email_validity = mysqli_query($db_connect, $email_validity);
 
 //     if(mysqli_fetch_assoc($email_validity)['validity'] == 0){
     

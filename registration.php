@@ -31,6 +31,7 @@ session_start();
     <link href="./assets/plugins/perfectscroll/perfect-scrollbar.css" rel="stylesheet">
     <link href="./assets/plugins/pace/pace.css" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     
     <!-- Theme Styles -->
     <link href="./assets/css/main.min.css" rel="stylesheet">
@@ -99,7 +100,10 @@ session_start();
                 <?php endif; unset($_SESSION['email_error']) ?>
 
                 <label for="signUpPassword" class="form-label">Password</label>
+                <div class="form-text m-b-md position-relative">
                 <input type="password" class="form-control <?= (isset($_SESSION['password_error'])) ? 'is-invalid' : ' ' ?>" id="signUpPassword" aria-describedby="signUpPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" name="password">
+                <!-- <i class="far fa-eye" id="regiPassword" style="cursor: pointer; position: absolute; top: 40%; right: 3%"></i> -->
+                </div>
 
                 <?php if(isset($_SESSION['password_error'])) : ?>
                 <div id="emailHelp" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
@@ -111,9 +115,14 @@ session_start();
 
                 <div id="emailHelp" class="form-text m-b-md">Password must be minimum 8 characters length*</div>
 
+                <div class="form-text m-b-md position-relative">
                 <label for="signUpPassword" class="form-label">Confirm Password</label>
                 <input type="password" class="form-control <?= (isset($_SESSION['con_password_error'])) ? 'is-invalid' : ' ' ?>" id="signUpPassword" aria-describedby="signUpPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" name="con_password">
+                
+                <i class="far fa-eye" id="regiPassword" style="cursor: pointer; position: absolute; top: 62%; right: 3%"></i>
+                </div>
 
+                
                 <?php if(isset($_SESSION['con_password_error'])) : ?>
                 <div id="emailHelp" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
                     <?= $_SESSION['con_password_error'] ?>
@@ -132,6 +141,20 @@ session_start();
         </div>
     </div>
     
+            <script>
+                const regiPassword = document.querySelector('#regiPassword');
+                const password = document.querySelector('#id_password');
+
+                regiPassword.addEventListener('click', function (e) {
+                    
+                    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                    password.setAttribute('type', type);
+                    
+                    this.classList.toggle('fa-eye-slash');
+                });
+            </script>
+
+
     <!-- Javascripts -->
     <script src="./assets/plugins/jquery/jquery-3.5.1.min.js"></script>
     <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>

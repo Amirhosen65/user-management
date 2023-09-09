@@ -44,6 +44,16 @@ session_start();
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+        <style>
+            .fa-eye{
+                position: absolute;
+            }
+            .password-input{
+                position: relative;
+            }
+        </style>
+
 </head>
 <body>
     <div class="app app-auth-sign-in align-content-stretch d-flex flex-wrap justify-content-end">
@@ -90,21 +100,20 @@ session_start();
             <?php endif; unset($_SESSION['login_failed']); ?>
 
 
-            <div class="auth-credentials m-b-xxl">
+            <div class="auth-credentials m-b-xxl position-relative">
                 <label for="signInEmail" class="form-label">Email address</label>
                 <input type="email" class="form-control m-b-md <?= (isset($_SESSION['login_failed'])) ? 'is-invalid' : ' ' ?>" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>" name="email">
 
                 <div class="password-input">
                     
                     <label for="signInPassword" class="form-label">Password</label>
-                    <i class="far fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+                    
                     <input type="password" class="form-control <?= (isset($_SESSION['login_failed'])) ? 'is-invalid' : ' ' ?>" id="id_password" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>" name="password">
+                    <i class="far fa-eye" id="togglePassword" style="cursor: pointer; position: absolute; top: 62%; right: 3%"></i>
                 </div>
 
-
-                
-
             </div>
+            
 
             <script>
                 const togglePassword = document.querySelector('#togglePassword');
