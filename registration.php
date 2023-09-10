@@ -79,7 +79,7 @@ session_start();
 
             <div class="auth-credentials m-b-xxl">
                 <label for="signUpUsername" class="form-label">Name</label>
-                <input type="text" class="form-control m-b-md <?= (isset($_SESSION['name_error'])) ? 'is-invalid' : ' ' ?>" id="signUpUsername" name="name" aria-describedby="signUpUsername" placeholder="Enter Name">
+                <input type="text" class="form-control m-b-md <?= (isset($_SESSION['name_error'])) ? 'is-invalid' : ' ' ?>" id="signUpUsername" name="name" aria-describedby="signUpUsername" placeholder="Enter Name" value="">
 
                 <?php if(isset($_SESSION['name_error'])) : ?>
                 <div id="emailHelp" class="alert alert-danger alert-dismissible fade show mt-2" role="alert">

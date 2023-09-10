@@ -27,6 +27,8 @@ if($email && $password){
         $_SESSION['admin_id'] = $user['id'];
         $_SESSION['admin_name'] = $user['name'];
         $_SESSION['admin_email'] = $user['email'];
+        $_SESSION['admin_profile_img'] = $user['profile_image'];
+
 
         $_SESSION['login_success'] = "Welcome to dashboard!";
 
