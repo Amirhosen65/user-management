@@ -67,7 +67,7 @@ include('./extends/header.php');
 
 
 
-  <div class="container my-5">
+  <div class="my-5">
     
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
 <script src="./icon_picker/fontawesome-browser.js"></script>

@@ -2,8 +2,6 @@
 
 include('./extends/header.php');
 
-
-
 ?>
 
 

@@ -89,6 +89,18 @@ if(!isset($_SESSION['admin_id'])){
                             </li>
                         </ul>
                     </li>
+
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'users.php' ? 'active-page' : '' ; ?>">
+                        <a href="users.php"><i class="material-icons-two-tone active">group</i>Users<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'users.php' ? 'active-page' : '' ; ?>">
+                                <a href="users.php">View Users</a>
+                            </li>
+                            <li>
+                                <a href="user_add.php">Add User</a>
+                            </li>
+                        </ul>
+                    </li>
                     
                 </ul>
             </div>
