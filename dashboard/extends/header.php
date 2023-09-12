@@ -71,18 +71,21 @@ if(!isset($_SESSION['admin_id'])){
                     <li class="<?= basename($_SERVER['PHP_SELF']) == 'profile.php' ? 'active-page' : '' ; ?>">
                         <a href="profile.php" class="active"><i class="material-icons-two-tone">account_box</i>Profile</a>
                     </li>
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'banner_update.php' ? 'active-page' : '' ; ?>">
+                        <a href="banner_update.php" class="active"><i class="material-icons-two-tone">perm_media</i>Banner Update</a>
+                    </li>
                     <li>
                         <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
                     </li>
                     
-                    <li>
-                        <a href="#"><i class="material-icons-two-tone">grid_on</i>Tables<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'services.php' ? 'active-page' : '' ; ?>">
+                        <a href="services.php"><i class="material-icons-two-tone active">medical_services</i>Services<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
-                            <li>
-                                <a href="tables-basic.html">Basic</a>
+                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'services.php' ? 'active-page' : '' ; ?>">
+                                <a href="services.php">View Services</a>
                             </li>
                             <li>
-                                <a href="tables-datatable.html">DataTable</a>
+                                <a href="services_add.php">Add Services</a>
                             </li>
                         </ul>
                     </li>

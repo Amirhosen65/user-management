@@ -1,3 +1,17 @@
+<?php
+
+require("./config/db.php");
+
+$users_select_query = "SELECT * FROM users";
+
+$users_connect = mysqli_query($db_connect, $users_select_query);
+
+$users = mysqli_fetch_assoc($users_connect);
+
+
+?>
+
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -131,8 +145,8 @@
                         <div class="col-xl-7 col-lg-6">
                             <div class="banner-content">
                                 <h6 class="wow fadeInUp" data-wow-delay="0.2s">HELLO!</h6>
-                                <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am Will Smith</h2>
-                                <p class="wow fadeInUp" data-wow-delay="0.6s">I'm Will Smith, professional web developer with long time experience in this field.</p>
+                                <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am <?= $users['name'] ?></h2>
+                                <p class="wow fadeInUp" data-wow-delay="0.6s">I'm <?= $users['name'] ?>, professional web developer with long time experience in this field.</p>
                                 <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
                                     <ul>
                                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
@@ -146,7 +160,7 @@
                         </div>
                         <div class="col-xl-5 col-lg-6 d-none d-lg-block">
                             <div class="banner-img text-right">
-                                <img src="./frontend_assets/img/banners/banner1.png" alt="">
+                                <img src="./images/profile_images/<?= $users['profile_image'] ?>" alt="" style="width: 600px; height: 850px; object-fit: cover;">
                             </div>
                         </div>
                     </div>

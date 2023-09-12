@@ -7,41 +7,34 @@ session_start();
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-
-if($email && $password){
-
+if ($email && $password) {
     $encrypt = md5($password);
 
-    $selec_users = "SELECT COUNT(*) as result FROM users WHERE email='$email' AND password='$encrypt'";
+    $select_users = "SELECT * FROM users WHERE email='$email'";
+    $select_connect = mysqli_query($db_connect, $select_users);
 
-    $select_connect = mysqli_query($db_connect, $selec_users);
+    if (mysqli_num_rows($select_connect) == 1) {
+        $user = mysqli_fetch_assoc($select_connect);
 
-    if(mysqli_fetch_assoc($select_connect)['result'] == 1 ){
+        if ($user['password'] == $encrypt) {
+            $_SESSION['admin_id'] = $user['id'];
+            $_SESSION['admin_name'] = $user['name'];
+            $_SESSION['admin_email'] = $user['email'];
+            $_SESSION['admin_profile_img'] = $user['profile_image'];
 
-        $select_info = "SELECT * FROM users WHERE email='$email'";
-        $connect = mysqli_query($db_connect, $select_info);
-
-        $user = mysqli_fetch_assoc($connect);
-
-        
-        $_SESSION['admin_id'] = $user['id'];
-        $_SESSION['admin_name'] = $user['name'];
-        $_SESSION['admin_email'] = $user['email'];
-        $_SESSION['admin_profile_img'] = $user['profile_image'];
-
-
-        $_SESSION['login_success'] = "Welcome to dashboard!";
-
-        header("location: ./dashboard/admin.php");
-
-    }else{
+            $_SESSION['login_success'] = "Welcome to the dashboard!";
+            header("location: ./dashboard/admin.php");
+        } else {
+            $_SESSION['login_failed'] = "Incorrect password. Please try again!";
+            header("location: login.php");
+        }
+    } else {
         $_SESSION['login_failed'] = "This email was not registered!";
         header("location: login.php");
     }
-}else{
+} else {
     $_SESSION['login_failed'] = "Please enter required information!";
     header("location: login.php");
 }
-
 
 ?>

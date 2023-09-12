@@ -102,7 +102,7 @@ session_start();
                 <label for="signUpPassword" class="form-label">Password</label>
                 <div class="form-text m-b-md position-relative">
                 <input type="password" class="form-control <?= (isset($_SESSION['password_error'])) ? 'is-invalid' : ' ' ?>" id="signUpPassword" aria-describedby="signUpPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" name="password">
-                <!-- <i class="far fa-eye" id="regiPassword" style="cursor: pointer; position: absolute; top: 40%; right: 3%"></i> -->
+                <i class="far fa-eye" id="regiPassword" style="cursor: pointer; position: absolute; top: 40%; right: 3%"></i>
                 </div>
 
                 <?php if(isset($_SESSION['password_error'])) : ?>

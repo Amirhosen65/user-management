@@ -20,7 +20,7 @@ include('./extends/header.php');
             <div class="alert alert-custom" role="alert">
                 <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
                 <div class="alert-content">
-                    <span class="alert-title">Hello, <?= $_SESSION['s_user'] ?></span>
+                    <span class="alert-title">Hello, <?= $_SESSION['admin_name'] ?></span>
                     <span class="alert-text">Welcome to Dashboard!</span>
                 </div>
             </div>

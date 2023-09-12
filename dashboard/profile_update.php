@@ -35,47 +35,27 @@ if(isset($email_update_btn)){
     if($email){
 
         $user_id = $_SESSION['admin_id'];
-        $email_update_query = "UPDATE users SET email='$email' WHERE id='$user_id' ";
+        
+        // Check if the email is already registered
+        $check_email_query = "SELECT id FROM users WHERE email='$email' AND id<>'$user_id'";
+        $check_email_result = mysqli_query($db_connect, $check_email_query);
 
-        mysqli_query($db_connect, $email_update_query);
-
-        $_SESSION['admin_email'] = $email;
-        $_SESSION['email_update_success'] = "Email updated successfully!";
-        header("location: profile.php");
-
-    }else{
+        if(mysqli_num_rows($check_email_result) > 0){
+            $_SESSION['email_error'] = "Email is already exist!";
+            header('location: profile.php');
+        } else {
+            // Update the email if it's not already registered
+            $email_update_query = "UPDATE users SET email='$email' WHERE id='$user_id'";
+            mysqli_query($db_connect, $email_update_query);
+            $_SESSION['admin_email'] = $email;
+            $_SESSION['email_update_success'] = "Email updated successfully!";
+            header("location: profile.php");
+        }
+    } else {
         $_SESSION['email_error'] = "Email is empty!";
         header('location: profile.php');
     }
 }
-
-
-
-// if(isset($email_update_btn)) {
-//     $email_validity = "SELECT COUNT(*) AS validity FROM users WHERE email='$email_update_btn'";
-//     $email_validity = mysqli_query($db_connect, $email_validity);
-
-//     if(mysqli_fetch_assoc($email_validity)['validity'] == 0){
-    
-//         $user_id = $_SESSION['admin_id'];
-//         $email_update_query = "UPDATE users SET email='$email' WHERE id='$user_id' ";
-
-//         mysqli_query($db_connect, $email_update_query);
-     
-//         $_SESSION['s_email'] = $email;
-//         $_SESSION['email_update_success'] = "Email updated successfully!";
-//         header("location: profile.php");
-
-//     }else{
-//         $_SESSION['email_error'] = "Email allready exists!";
-//         header('location: profile.php');
-//     }
-    
-// }else{
-//     $_SESSION['email_error'] = "Email is empty!";
-//     header('location: profile.php');
-// }
-
 
 
 if(isset($password_update_btn)){
@@ -157,7 +137,6 @@ if(isset($profile_img_update)){
         $_SESSION['profile_img_error'] = "Profile image is empty!";
         header("location: profile.php");
     }
-    
 
 }
 
