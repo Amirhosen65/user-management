@@ -100,7 +100,7 @@ if(isset($password_update_btn)){
                 if($new_password == $confirm_password){
                     $new_password_encrypt = md5($new_password);
 
-                    $password_update_query = "UPDATE users SET password='$new_password_encrypt' WHERE id='$admin_id'";
+                    $password_update_query = "UPDATE users SET password='$new_password_encrypt' WHERE id='$user_id'";
                     mysqli_query($db_connect, $password_update_query);
 
                     $_SESSION['password_update_success'] = "Password Change Successfull!";
