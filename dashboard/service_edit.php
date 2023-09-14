@@ -1,6 +1,13 @@
 <?php
 
 include('./extends/header.php');
+include('../config/db.php');
+
+$id = $_GET['edit_id'];
+
+$select_query = "SELECT * FROM services WHERE id='$id'";
+$connect = mysqli_query($db_connect,$select_query);
+$service = mysqli_fetch_assoc($connect);
 
 ?>
 
@@ -24,7 +31,7 @@ include('./extends/header.php');
 <div class="row">
     <div class="col">
         <div class="page-description">
-            <h1>Services</h1>
+            <h1>Service Edit</h1>
         </div>
     </div>
 </div>
@@ -33,41 +40,39 @@ include('./extends/header.php');
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
-                <h3>Add Service</h3>
-            </div>
 
-            <?php if(isset($_SESSION['service_error'])) : ?>
+            <?php if(isset($_SESSION['service_update_error'])) : ?>
                 <div class="alert alert-custom" role="alert">
                     <div class="custom-alert-icon icon-danger"><i class="material-icons-outlined">close</i></div>
                     <div class="alert-content">
                         <span class="alert-title text-danger">Failed!</span>
-                        <span class="alert-text text-danger"><?= $_SESSION['service_error'] ?></span>
+                        <span class="alert-text text-danger"><?= $_SESSION['service_update_error'] ?></span>
                     </div>
                 </div>
-                <?php endif; unset($_SESSION['service_error']); ?>
+                <?php endif; unset($_SESSION['service_update_error']); ?>
 
             <div class="card-body">
             <form class="row g-3" action="service_post.php" method="POST">
                 <div class="col-md-12">
                     <label class="form-label">Service Tittle</label>
-                    <input type="text" class="form-control" name="service_title">
+                    <input type="text" class="form-control" name="service_title" value="<?= $service['title'] ?>">
+                    <input type="text" value="<?= $service['id'] ?>" name="service_id" hidden>
                 </div>
 
                 <div class="col-md-12">
                     <label class="form-label">Description</label>
-                    <textarea class="form-control" name="service_description" id="" cols="30" rows="5"></textarea>
+                    <textarea class="form-control" name="service_description" id="" cols="30" rows="5"><?= $service['description'] ?></textarea>
                 </div>
 
                 <div class="col-md-6 my-3">
                     <label class="form-label">Icon</label>
-                    <input type="text" class="form-control" placeholder="Select icon" data-fa-browser name="icon"/>
+                    <input type="text" class="form-control" data-fa-browser name="icon" value="<?= $service['icon'] ?>"/>
                 </div>
                 
 
 
                 <div class="col-8">
-                    <button type="submit" class="btn btn-success" name="service_add_btn">Add Service</button>
+                    <button type="submit" class="btn btn-success" name="service_edit_btn">Update</button>
                 </div>
             </form>
             </div>

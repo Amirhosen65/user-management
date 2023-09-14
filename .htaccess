@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule ^admin$ login.php [L]
+RewriteRule ^registration.php$ 404.php [L]
+
+
