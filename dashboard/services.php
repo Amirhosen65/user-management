@@ -29,7 +29,7 @@ $serial = 1;
     </nav>
     </div>
     <div class="col-4 text-right">
-    <a href="services_add.php" class="btn btn-primary">Add Service</a>
+    <a href="services_add.php" class="btn btn-primary float-end">Add Service</a>
     </div>
 </div>
 

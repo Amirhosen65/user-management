@@ -129,7 +129,7 @@ session_start();
             </script>
 
             <div class="auth-submit">
-                <button type="submit" class="btn btn-primary">Sign In</a>
+                <button type="submit" class="btn btn-primary">Log In</a>
             </div>
             <div class="divider"></div>   
             </form>         
