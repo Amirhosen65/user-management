@@ -31,6 +31,8 @@ if(!isset($_SESSION['admin_id'])){
     <link href="../assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/plugins/perfectscroll/perfect-scrollbar.css" rel="stylesheet">
     <link href="../assets/plugins/pace/pace.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
     
     <!-- Theme Styles -->
@@ -141,6 +143,18 @@ input:checked + .slider:before {
                             </li>
                             <li>
                                 <a href="services_add.php">Add Services</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'counter.php' ? 'active-page' : '' ; ?>">
+                        <a href="counter.php"><i class="material-icons-two-tone active">countertops</i>Profolio Counter<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'counter.php' ? 'active-page' : '' ; ?>">
+                                <a href="counter.php">View Profolio Counter</a>
+                            </li>
+                            <li>
+                                <a href="counter_add.php">Add Counter</a>
                             </li>
                         </ul>
                     </li>

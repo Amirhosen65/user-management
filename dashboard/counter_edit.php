@@ -6,11 +6,12 @@ include('./icons.php');
 
 $id = $_GET['edit_id'];
 
-$select_query = "SELECT * FROM services WHERE id='$id'";
+$select_query = "SELECT * FROM portfolio_count WHERE id='$id'";
 $connect = mysqli_query($db_connect,$select_query);
-$service = mysqli_fetch_assoc($connect);
+$counter = mysqli_fetch_assoc($connect);
 
 ?>
+
 
 
 
@@ -27,30 +28,30 @@ $service = mysqli_fetch_assoc($connect);
     <div class="col-12">
         <div class="card">
 
-            <?php if(isset($_SESSION['service_update_error'])) : ?>
+            <?php if(isset($_SESSION['counter_update_error'])) : ?>
                 <div class="alert alert-custom" role="alert">
                     <div class="custom-alert-icon icon-danger"><i class="material-icons-outlined">close</i></div>
                     <div class="alert-content">
                         <span class="alert-title text-danger">Failed!</span>
-                        <span class="alert-text text-danger"><?= $_SESSION['service_update_error'] ?></span>
+                        <span class="alert-text text-danger"><?= $_SESSION['counter_update_error'] ?></span>
                     </div>
                 </div>
-                <?php endif; unset($_SESSION['service_update_error']); ?>
+                <?php endif; unset($_SESSION['counter_update_error']); ?>
 
             <div class="card-body">
-            <form class="row g-3" action="service_post.php" method="POST">
+            <form class="row g-3" action="counter_post.php" method="POST">
                 <div class="col-md-12">
-                    <label class="form-label">Service Tittle</label>
-                    <input type="text" class="form-control" name="service_title" value="<?= $service['title'] ?>">
-                    <input type="text" value="<?= $service['id'] ?>" name="service_id" hidden>
+                    <label class="form-label">counter Tittle</label>
+                    <input type="text" class="form-control" name="counter_title" value="<?= $counter['title'] ?>">
+                    <input type="text" value="<?= $counter['id'] ?>" name="counter_id" hidden>
                 </div>
 
                 <div class="col-md-12">
-                    <label class="form-label">Description</label>
-                    <textarea class="form-control" name="service_description" id="" cols="30" rows="5"><?= $service['description'] ?></textarea>
+                    <label class="form-label">Counter</label>
+                    <input type="number" class="form-control" name="counter" value="<?= $counter['counter'] ?>">
                 </div>
 
-                <input type="text" class="form-control" name="icon" id="showThat" value="<?= $service['icon'] ?>">
+                <input type="text" class="form-control" name="icon" id="showThat" value="<?= $counter['icon'] ?>">
                         <div class="card">
                             <div class="card-body" style="overflow-x: scroll; height:350px;">
                                 <?php foreach($icons as $icon) :?>
@@ -64,7 +65,7 @@ $service = mysqli_fetch_assoc($connect);
 
 
                 <div class="col-8">
-                    <button type="submit" class="btn btn-success" name="service_edit_btn">Update</button>
+                    <button type="submit" class="btn btn-success" name="counter_edit_btn">Update</button>
                 </div>
             </form>
             </div>

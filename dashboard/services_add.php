@@ -1,24 +1,12 @@
 <?php
 
 include('./extends/header.php');
+include('./icons.php');
 
 ?>
 
 
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.0/flatly/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-<link rel="stylesheet" href="./icon_picker/fontawesome-browser.css" />
-</head>
-
-<body>
 
 
 <div class="row">
@@ -59,15 +47,23 @@ include('./extends/header.php');
                     <textarea class="form-control" name="service_description" id="" cols="30" rows="5"></textarea>
                 </div>
 
-                <div class="col-md-6 my-3">
+                <div class="col-md-12">
                     <label class="form-label">Icon</label>
-                    <input type="text" class="form-control" placeholder="Select icon" data-fa-browser name="icon"/>
+
+                    <input type="text" class="form-control" name="icon" id="showThat">
+                        <div class="card">
+                            <div class="card-body" style="overflow-x: scroll; height:350px;">
+                                <?php foreach($icons as $icon) :?>
+
+                                    <span class="fa-2x ms-2 me-2"><i onclick="myFun(event)" class="<?= $icon ?>"></i></span>
+
+                                    <?php endforeach; ?>
+                            </div>
+                        </div>
                 </div>
                 
-
-
                 <div class="col-8">
-                    <button type="submit" class="btn btn-success" name="service_add_btn">Add Service</button>
+                    <button type="submit" class="btn btn-primary" name="service_add_btn">Add Service</button>
                 </div>
             </form>
             </div>
@@ -76,50 +72,15 @@ include('./extends/header.php');
 </div>
 
 
-
-
-  <div class="my-5">
-    
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
-<script src="./icon_picker/fontawesome-browser.js"></script>
 <script>
-  $(function($) {
-    $.fabrowser();
-});
-</script>
-<script type="text/javascript">
+    let input = document.getElementById('showThat');
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-36251023-1']);
-  _gaq.push(['_setDomainName', 'jqueryscript.net']);
-  _gaq.push(['_trackPageview']);
+    function myFun(){
+        input.value = event.target.getAttribute('class');
+    }
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
 
 </script>
-<script>
-try {
-  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
-    return true;
-  }).catch(function(e) {
-    var carbonScript = document.createElement("script");
-    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
-    carbonScript.id = "_carbonads_js";
-    document.getElementById("carbon-block").appendChild(carbonScript);
-  });
-} catch (error) {
-  console.log(error);
-}
-</script>
-</body>
-</html>
-
-
-
 
 <?php
 

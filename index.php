@@ -3,10 +3,12 @@
 require("./config/db.php");
 
 $users_select_query = "SELECT * FROM users";
-
 $users_connect = mysqli_query($db_connect, $users_select_query);
-
 $users = mysqli_fetch_assoc($users_connect);
+
+$counter_select_query = "SELECT * FROM portfolio_count";
+$counter_connect = mysqli_query($db_connect,$counter_select_query);
+$counters = mysqli_fetch_assoc($counter_connect);
 
 
 ?>
@@ -419,50 +421,45 @@ $users = mysqli_fetch_assoc($users_connect);
                 <div class="container">
                     <div class="fact-wrap">
                         <div class="row justify-content-between">
+
+
+                        <?php foreach ($counters as $counter) : ?>
                             <div class="col-xl-2 col-lg-3 col-sm-6">
                                 <div class="fact-box text-center mb-50">
                                     <div class="fact-icon">
-                                        <i class="flaticon-award"></i>
+                                    <?php if ($counter['icon']) : ?>
+                                            <i class="<?= $counter['icon'] ?>"></i>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="fact-content">
-                                        <h2><span class="count">245</span></h2>
-                                        <span>Feature Item</span>
+                                        <h2><span class="count"><?= $counter['counter'] ?></span></h2>
+                                        <span><?= $counter['title'] ?></span>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-3 col-sm-6">
-                                <div class="fact-box text-center mb-50">
-                                    <div class="fact-icon">
-                                        <i class="flaticon-like"></i>
-                                    </div>
-                                    <div class="fact-content">
-                                        <h2><span class="count">345</span></h2>
-                                        <span>Active Products</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-sm-6">
-                                <div class="fact-box text-center mb-50">
-                                    <div class="fact-icon">
-                                        <i class="flaticon-event"></i>
-                                    </div>
-                                    <div class="fact-content">
-                                        <h2><span class="count">39</span></h2>
-                                        <span>Year Experience</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-2 col-lg-3 col-sm-6">
-                                <div class="fact-box text-center mb-50">
-                                    <div class="fact-icon">
-                                        <i class="flaticon-woman"></i>
-                                    </div>
-                                    <div class="fact-content">
-                                        <h2><span class="count">3</span>k</h2>
-                                        <span>Our Clients</span>
-                                    </div>
-                                </div>
-                            </div>
+                        <?php endforeach; ?>
+
+
+                            <!-- <?php foreach ($counters as $counter) : ?>
+                                <tr>
+                                    <th scope="row"><?= $serial++ ?></th>
+                                    <td>
+                                        <?php if ($counter['icon']) : ?>
+                                            <i class="<?= $counter['icon'] ?>"></i>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td><?= $counter['title'] ?></td>
+                                    <td><?= $counter['counter'] ?></td>
+
+                                    <td>
+                                        <a href="counter_edit.php?edit_id=<?= $counter['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                        <a href="counter_post.php?delete_id=<?= $counter['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?> -->
+
+                            
+                            
                         </div>
                     </div>
                 </div>
