@@ -39,7 +39,7 @@ if(isset($_POST['counter_edit_btn'])){
     $counter = $_POST['counter'];
     $icon = $_POST['icon'];
 
-    if($title && $icon){
+    if($title && $counter && $icon){
         $update_counter = "UPDATE portfolio_count SET title='$title', counter='$counter', icon='$icon' WHERE id='$id'";
         mysqli_query($db_connect,$update_counter);
 
