@@ -7,8 +7,13 @@ $users_connect = mysqli_query($db_connect, $users_select_query);
 $users = mysqli_fetch_assoc($users_connect);
 
 $counter_select_query = "SELECT * FROM portfolio_count";
-$counter_connect = mysqli_query($db_connect,$counter_select_query);
-$counters = mysqli_fetch_assoc($counter_connect);
+$counters = mysqli_query($db_connect,$counter_select_query);
+
+$service_select_query = "SELECT * FROM services WHERE status='active'";
+$services = mysqli_query($db_connect,$service_select_query);
+
+$protfolio_select_query = "SELECT * FROM protfolio WHERE status='active'";
+$protfolios = mysqli_query($db_connect,$protfolio_select_query);
 
 
 ?>
@@ -38,6 +43,8 @@ $counters = mysqli_fetch_assoc($counter_connect);
         <link rel="stylesheet" href="./frontend_assets/css/default.css">
         <link rel="stylesheet" href="./frontend_assets/css/style.css">
         <link rel="stylesheet" href="./frontend_assets/css/responsive.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 
         <style>
         /* Add some custom CSS for positioning the back to top button */
@@ -267,60 +274,19 @@ $counters = mysqli_fetch_assoc($counter_connect);
                         </div>
                     </div>
 					<div class="row">
+
+                        <?php foreach($services as $service): ?>
 						<div class="col-lg-4 col-md-6">
 							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.2s">
-                                <i class="fab fa-react"></i>
-								<h3>Creative Design</h3>
+                                <i class="<?= $service['icon'] ?>"></i>
+								<h3><?= $service['title'] ?></h3>
 								<p>
-									Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
+                                <?= $service['description'] ?>
 								</p>
 							</div>
 						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.4s">
-								<i class="fab fa-free-code-camp"></i>
-								<h3>Unlimited Features</h3>
-								<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.6s">
-                                <i class="fal fa-desktop"></i>
-								<h3>Ultra Responsive</h3>
-								<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.2s">
-                                <i class="fal fa-lightbulb-on"></i>
-								<h3>Creative Ideas</h3>
-								<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.4s">
-                                <i class="fal fa-edit"></i>
-								<h3>Easy Customization</h3>
-								<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
-						<div class="col-lg-4 col-md-6">
-							<div class="icon_box_01 wow fadeInLeft" data-wow-delay="0.6s">
-                                <i class="fal fa-headset"></i>
-								<h3>Supper Support</h3>
-								<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum indust.
-								</p>
-							</div>
-						</div>
+                        <?php endforeach; ?>
+						
 					</div>
 				</div>
 			</section>
@@ -338,82 +304,26 @@ $counters = mysqli_fetch_assoc($counter_connect);
                         </div>
                     </div>
                     <div class="row">
+
+                    <?php foreach($protfolios as $protfolio): ?>
                         <div class="col-lg-4 col-md-6 pitem">
                             <div class="speaker-box">
 								<div class="speaker-thumb">
-									<img src="./frontend_assets/img/images/1.jpg" alt="img">
+									<img src="./images/protfolio_images/<?= $protfolio['image'] ?>" alt="img">
 								</div>
 								<div class="speaker-overlay">
-									<span>Design</span>
-									<h4><a href="portfolio-single.html">Hamble Triangle</a></h4>
+									<span><?= $protfolio['title'] ?></span>
+									<h4><a href="portfolio-single.html"><?= $protfolio['description'] ?></a></h4>
 									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
 								</div>
 							</div>
                         </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="./frontend_assets/img/images/2.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Video</span>
-									<h4><a href="portfolio-single.html">Dark Beauty</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="./frontend_assets/img/images/3.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Audio</span>
-									<h4><a href="portfolio-single.html">Gilroy Limbo.</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-						<div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="./frontend_assets/img/images/4.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Design</span>
-									<h4><a href="portfolio-single.html">Ipsum which</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="./frontend_assets/img/images/5.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Creative</span>
-									<h4><a href="portfolio-single.html">Eiusmod tempor</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="./frontend_assets/img/images/6.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>UX/UI</span>
-									<h4><a href="portfolio-single.html">again there</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
+                    <?php endforeach; ?>
+                        
                     </div>
                 </div>
             </section>
-            <!-- services-area-end -->
+            <!-- Portfolios-area-end -->
 
 
             <!-- fact-area -->
@@ -422,14 +332,11 @@ $counters = mysqli_fetch_assoc($counter_connect);
                     <div class="fact-wrap">
                         <div class="row justify-content-between">
 
-
-                        <?php foreach ($counters as $counter) : ?>
+                        <?php foreach($counters as $counter) :?>
                             <div class="col-xl-2 col-lg-3 col-sm-6">
                                 <div class="fact-box text-center mb-50">
                                     <div class="fact-icon">
-                                    <?php if ($counter['icon']) : ?>
-                                            <i class="<?= $counter['icon'] ?>"></i>
-                                        <?php endif; ?>
+                                        <i class="<?= $counter['icon'] ?>"></i>
                                     </div>
                                     <div class="fact-content">
                                         <h2><span class="count"><?= $counter['counter'] ?></span></h2>
@@ -437,28 +344,7 @@ $counters = mysqli_fetch_assoc($counter_connect);
                                     </div>
                                 </div>
                             </div>
-                        <?php endforeach; ?>
-
-
-                            <!-- <?php foreach ($counters as $counter) : ?>
-                                <tr>
-                                    <th scope="row"><?= $serial++ ?></th>
-                                    <td>
-                                        <?php if ($counter['icon']) : ?>
-                                            <i class="<?= $counter['icon'] ?>"></i>
-                                        <?php endif; ?>
-                                    </td>
-                                    <td><?= $counter['title'] ?></td>
-                                    <td><?= $counter['counter'] ?></td>
-
-                                    <td>
-                                        <a href="counter_edit.php?edit_id=<?= $counter['id'] ?>" class="btn btn-sm btn-primary">Edit</a>
-                                        <a href="counter_post.php?delete_id=<?= $counter['id'] ?>" class="btn btn-sm btn-danger">Delete</a>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?> -->
-
-                            
+                            <?php endforeach; ?>
                             
                         </div>
                     </div>

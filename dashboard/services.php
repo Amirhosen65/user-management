@@ -91,15 +91,14 @@ $serial = 1;
                         <td>
                             <?php if($service['status'] == 'active') :?>
                                 <label class="switch">
-                                    <input type="checkbox" checked>
-                                    <span class="slider"></span>
-                                    </label>
-                                <?php else : ?>
+                                    <a href="service_post.php?status_id=<?= $service['id'] ?>"><input type="checkbox" checked>
+                                    <span class="slider"></span></a>
+                                    <?php else : ?>
                                     <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider"></span>
-                                    </label>
-                                    <?php endif; ?>
+                                    <a href="service_post.php?status_id=<?= $service['id'] ?>"><input type="checkbox">
+                                    <span class="slider"></span></a>
+                                </label>
+                            <?php endif; ?>
                         </td>
                         <td>
                             <a href="service_edit.php?edit_id=<?= $service['id'] ?>" class="btn btn-sm btn-primary">Edit</a>

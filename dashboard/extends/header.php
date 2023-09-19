@@ -6,6 +6,11 @@ if(!isset($_SESSION['admin_id'])){
     header("location: 404.php");
 }
 
+$server = $_SERVER['PHP_SELF'];
+$explode = explode('/',$server);
+
+$links = end($explode);
+
 ?>
 
 
@@ -158,6 +163,33 @@ input:checked + .slider:before {
                             </li>
                         </ul>
                     </li>
+
+
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'protfolios.php' ? 'active-page' : '' ; ?>">
+                        <a href="protfolio_add.php"><i class="material-icons-two-tone active">shopping_bag</i>Profolios<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'protfolios.php' ? 'active-page' : '' ; ?>">
+                                <a href="protfolios.php">View Profolios</a>
+                            </li>
+                            <li>
+                                <a href="protfolio_add.php">Add Profolios</a>
+                            </li>
+                        </ul>
+                    </li>
+
+
+
+                    <!-- <li class="<?php if($links == 'protfolios.php'){ echo 'active-page' ;}elseif($links == 'protfolio_add.php'){ echo 'active-page' ; }else{ echo '' ; } ?>">
+                        <a href="javascript:void(0)"><i class="material-icons-two-tone">shopping_bag</i>Portfolios<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a href="../protfolios/protfolios.php">Portfolio Show</a>
+                            </li>
+                            <li>
+                                <a href="../protfolios/protfolio_add.php">Port ADD</a>
+                            </li>
+                        </ul>
+                    </li> -->
 
                     <li class="<?= basename($_SERVER['PHP_SELF']) == 'users.php' ? 'active-page' : '' ; ?>">
                         <a href="users.php"><i class="material-icons-two-tone active">group</i>Users<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>

@@ -50,7 +50,27 @@ if(isset($_POST['service_edit_btn'])){
         $_SESSION['service_update_error'] = "Please insert all information!";
         header('location: services_edit.php');
     }
+}
 
+if(isset($_GET['status_id'])){
+    $id = $_GET['status_id'];
+    $select_service = "SELECT * FROM services WHERE id='$id'";
+    $connect = mysqli_query($db_connect,$select_service);
+    $select = mysqli_fetch_assoc($connect);
+    
+    if($select['status'] == 'active'){
+        $update_query = "UPDATE services SET status='deactive' WHERE id='$id'";
+        mysqli_query($db_connect,$update_query);
+
+        $_SESSION['service_delete'] = "service deactive successfull!";
+        header('location: services.php');
+    }else{
+        $update_query = "UPDATE services SET status='active' WHERE id='$id'";
+        mysqli_query($db_connect,$update_query);
+
+        $_SESSION['service_delete'] = "service active successfull!";
+        header('location: services.php');
+    } 
 }
 
 
