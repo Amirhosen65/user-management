@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require("./config/db.php");
 
 $users_select_query = "SELECT * FROM users";
@@ -15,9 +16,7 @@ $services = mysqli_query($db_connect,$service_select_query);
 $protfolio_select_query = "SELECT * FROM protfolio WHERE status='active'";
 $protfolios = mysqli_query($db_connect,$protfolio_select_query);
 
-
 ?>
-
 
 <!doctype html>
 <html class="no-js" lang="en">
@@ -184,7 +183,7 @@ $protfolios = mysqli_query($db_connect,$protfolio_select_query);
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="about-img">
-                                <img src="./frontend_assets/img/banners/banner_img2.png" title="me-01" alt="me-01" style="width: 434px;">
+                                <img src="./frontend_assets/img/banners/banner_2.png" title="me-01" alt="me-01" style="width: 434px;">
                             </div>
                         </div>
                         <div class="col-lg-6 pr-90">
@@ -196,7 +195,7 @@ $protfolios = mysqli_query($db_connect,$protfolio_select_query);
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum, sed repudiandae odit deserunt, quas
                                     quibusdam necessitatibus nesciunt eligendi esse sit non reprehenderit quisquam asperiores maxime
                                     blanditiis culpa vitae velit. Numquam!</p>
-                                <h3>Education:</h3>
+                                <h3>Skills:</h3>
                             </div>
                             <!-- Education Item -->
                             <div class="education">
@@ -212,6 +211,7 @@ $protfolios = mysqli_query($db_connect,$protfolio_select_query);
                                 </div>
                             </div>
                             <!-- End Education Item -->
+
                             <!-- Education Item -->
                             <div class="education">
                                 <div class="year">2016</div>
@@ -458,14 +458,52 @@ $protfolios = mysqli_query($db_connect,$protfolio_select_query);
                             </div>
                         </div>
                         <div class="col-lg-6">
-                            <div class="contact-form">
-                                <form action="#">
-                                    <input type="text" placeholder="your name *">
-                                    <input type="email" placeholder="your email *">
-                                    <textarea name="message" id="message" placeholder="your message *"></textarea>
-                                    <button class="btn">SEND</button>
+                  
+                            <form action="mail_post.php" method="POST">
+
+                                <?php if(isset($_SESSION['mail_sent'])) : ?>
+                                    <div class="alert alert-custom" role="alert">
+                                        <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
+                                        <div class="alert-content">
+                                            <span class="alert-title">Great!</span>
+                                            <span class="alert-text"><?= $_SESSION['mail_sent'] ?></span>
+                                        </div>
+                                    </div>
+                                <?php endif; unset($_SESSION['mail_sent']); ?>
+
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Name *</label>
+                                    <input type="text" required class="form-control" name="name">
+                                    
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email address *</label>
+                                    <input type="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                                
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Subject</label>
+                                    <input type="text" required class="form-control" name="subject">
+                                    
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Message *</label>
+                                    <textarea name="message" required class="form-control" rows="5" placeholder="Your message"></textarea>
+                                </div>
+                                    
+                                    <button type="submit" name="mail_send_btn" class="btn">SEND</button>
                                 </form>
-                            </div>
+
+                                <?php if(isset($_SESSION['mail_sent_err'])) : ?>
+                                    <div class="alert alert-custom" role="alert">
+                                        <div class="custom-alert-icon icon-danger"><i class="material-icons-outlined">done</i></div>
+                                        <div class="alert-content">
+                                            <span class="alert-title">Failed!</span>
+                                            <span class="alert-text text-danger"><?= $_SESSION['mail_sent_err'] ?></span>
+                                        </div>
+                                    </div>
+                                <?php endif; unset($_SESSION['mail_sent_err']); ?>
+                          
                         </div>
                     </div>
                 </div>

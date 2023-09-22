@@ -42,7 +42,8 @@ include('./extends/header.php');
 
                 <div class="col-md-12">
                     <label class="form-label">Description</label>
-                    <input type="text" class="form-control" name="description">
+                    
+                    <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
                 </div>
 
                 <div class="col-md-12">

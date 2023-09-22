@@ -85,7 +85,7 @@ $serial = 1;
                     <?php foreach($services as $service) :?>
                     <tr>
                         <th scope="row"><?= $serial++ ?></th>
-                        <td><?= $service['icon'] ?></td>
+                        <td><i><i class="<?= $service['icon'] ?>"></i></i></td>
                         <td><?= $service['title'] ?></td>
                         <td><?= $service['description'] ?></td>
                         <td>

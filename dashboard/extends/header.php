@@ -130,6 +130,14 @@ input:checked + .slider:before {
                     <li class="<?= basename($_SERVER['PHP_SELF']) == 'admin.php' ? 'active-page' : '' ; ?>">
                         <a href="admin.php" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
                     </li>
+
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'mailbox.php' ? 'active-page' : '' ; ?>">
+                        <a href="mailbox.php" class="active"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
+                    </li>
+
+                    <li>
+                        <a href="../index.php" target='_blank' class="active"><i class="material-icons-two-tone">web</i>website</a>
+                    </li>
                     <li class="<?= basename($_SERVER['PHP_SELF']) == 'profile.php' ? 'active-page' : '' ; ?>">
                         <a href="profile.php" class="active"><i class="material-icons-two-tone">account_box</i>Profile</a>
                     </li>
@@ -156,7 +164,7 @@ input:checked + .slider:before {
                         <a href="counter.php"><i class="material-icons-two-tone active">countertops</i>Profolio Counter<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li class="<?= basename($_SERVER['PHP_SELF']) == 'counter.php' ? 'active-page' : '' ; ?>">
-                                <a href="counter.php">View Profolio Counter</a>
+                                <a href="counter.php">View Counter</a>
                             </li>
                             <li>
                                 <a href="counter_add.php">Add Counter</a>
@@ -176,20 +184,6 @@ input:checked + .slider:before {
                             </li>
                         </ul>
                     </li>
-
-
-
-                    <!-- <li class="<?php if($links == 'protfolios.php'){ echo 'active-page' ;}elseif($links == 'protfolio_add.php'){ echo 'active-page' ; }else{ echo '' ; } ?>">
-                        <a href="javascript:void(0)"><i class="material-icons-two-tone">shopping_bag</i>Portfolios<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a href="../protfolios/protfolios.php">Portfolio Show</a>
-                            </li>
-                            <li>
-                                <a href="../protfolios/protfolio_add.php">Port ADD</a>
-                            </li>
-                        </ul>
-                    </li> -->
 
                     <li class="<?= basename($_SERVER['PHP_SELF']) == 'users.php' ? 'active-page' : '' ; ?>">
                         <a href="users.php"><i class="material-icons-two-tone active">group</i>Users<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>

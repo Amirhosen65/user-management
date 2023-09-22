@@ -48,7 +48,8 @@ $protfolio = mysqli_fetch_assoc($connect);
 
                 <div class="col-md-12">
                     <label class="form-label">Description</label>
-                    <input type="text" class="form-control" name="description" value="<?= $protfolio['description'] ?>">
+                    
+                    <textarea class="form-control" name="description" id="" cols="30" rows="10"><?= $protfolio['description'] ?></textarea>
                 </div>
 
                 <div class="col-md-12">
