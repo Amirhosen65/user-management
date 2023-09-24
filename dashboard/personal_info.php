@@ -3,18 +3,20 @@
 include('./extends/header.php');
 include('../config/db.php');
 
-$id = $_GET['edit_id'];
-
-$select_query = "SELECT * FROM personal_info WHERE id='$id'";
+$select_query = "SELECT * FROM personal_info WHERE id='1'";
 $connect = mysqli_query($db_connect,$select_query);
 $personal_info = mysqli_fetch_assoc($connect);
+
+$select_img_query = "SELECT * FROM banner_image WHERE id='1'";
+$img_connect = mysqli_query($db_connect,$select_img_query);
+$banner_image = mysqli_fetch_assoc($img_connect);
 
 ?>
 
 <div class="row">
     <div class="col">
         <div class="page-description">
-            <h1>Protfolios</h1>
+            <h1>Personal Information</h1>
         </div>
     </div>
 </div>
@@ -23,59 +25,128 @@ $personal_info = mysqli_fetch_assoc($connect);
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3>Edit Protfolio</h3>
+                <h3>View Information</h3>
             </div>
 
-            <?php if(isset($_SESSION['protfolio_error'])) : ?>
+            <?php if(isset($_SESSION['info_update'])) : ?>
+                <div class="alert alert-custom" role="alert">
+                    <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
+                    <div class="alert-content">
+                        <span class="alert-title text-success">Great!</span>
+                        <span class="alert-text text-success"><?= $_SESSION['info_update'] ?></span>
+                    </div>
+                </div>
+                <?php endif; unset($_SESSION['info_update']); ?>
+
+            <div class="card-body">
+
+
+            <table class="table table-bordered">
+                <colgroup>
+                    <col style="width: 18%">
+                    <col style="width: 82%">
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th scope="row">Name</th>
+                        <td><?= $personal_info['name'] ?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Intro</th>
+                        <td><?= $personal_info['intro'] ?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Details About</th>
+                        <td><?= $personal_info['details_about'] ?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Facebook Link</th>
+                        <td><?= $personal_info['facebook'] ?></td>
+                        </tr>
+                    <tr>
+                        <th scope="row">Twitter Link</th>
+                        <td><?= $personal_info['twitter'] ?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Linkedin Link</th>
+                        <td><?= $personal_info['linkedin'] ?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Instagram Link</th>
+                        <td><?= $personal_info['instagram'] ?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Github Link</th>
+                        <td><?= $personal_info['github'] ?></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Youtube Link</th>
+                        <td><?= $personal_info['youtube'] ?></td>
+                    </tr>
+                </tbody>
+            </table>
+                <a href="personal_info_edit.php?edit_id=<?= $personal_info['id'] ?>" class="btn btn-primary">Edit Info</a>
+            </div>
+        </div>
+
+        <
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+    <div class="card">
+            <div class="col">
+            <div class="card-header">
+                <h3>Banner Image 1st</h3>
+            </div>
+            <div class="card-body">
+
+            <?php if(isset($_SESSION['banner_update'])) : ?>
+                <div class="alert alert-custom" role="alert">
+                    <div class="custom-alert-icon icon-success"><i class="material-icons-outlined">done</i></div>
+                    <div class="alert-content">
+                        <span class="alert-title text-success">Great!</span>
+                        <span class="alert-text text-success"><?= $_SESSION['banner_update'] ?></span>
+                    </div>
+                </div>
+                <?php endif; unset($_SESSION['banner_update']); ?>
+
+                <?php if(isset($_SESSION['banner_update_error'])) : ?>
                 <div class="alert alert-custom" role="alert">
                     <div class="custom-alert-icon icon-danger"><i class="material-icons-outlined">close</i></div>
                     <div class="alert-content">
-                        <span class="alert-title text-danger">Failed!</span>
-                        <span class="alert-text text-danger"><?= $_SESSION['protfolio_error'] ?></span>
+                        <span class="alert-title text-danger">Update Failed!</span>
+                        <span class="alert-text text-danger"><?= $_SESSION['banner_update_error'] ?></span>
                     </div>
                 </div>
-                <?php endif; unset($_SESSION['protfolio_error']); ?>
+                <?php endif; unset($_SESSION['banner_update_error']); ?>
 
+
+            <img src="../frontend_assets/img/banners/<?=$banner_image['image_1']?>" alt="" style="height: 200px;">
+            
+            <form action="personal_info_post.php" method="POST" enctype="multipart/form-data">
+                    
+            <input type="file" class="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" name="banner_img1">
+            <div id="emailHelp" class="form-text m-b-md">Recommended image size 600x850</div>
+
+            <div class="card-header">
+                <h3>Banner Image 2nd</h3>
+            </div>
             <div class="card-body">
-                
-            <form class="row g-3" action="protfolio_post.php" method="POST" enctype="multipart/form-data">
+            <img src="../frontend_assets/img/banners/<?=$banner_image['image_2']?>" alt="" style="height: 200px;">
+            </div>
 
-                <div class="col-md-12">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name" value="<?= $personal_info['name'] ?>">
-                    <input type="text" value="<?= $personal_info['id'] ?>" name="protfolio_id" hidden>
-                </div>
+            <input type="file" class="form-control mt-2" aria-describedby="emailHelp" name="banner_img2">
+            <input type="number" hidden value="<?=$banner_image['id']?>" name="banner_id">
+            <div id="emailHelp" class="form-text m-b-md">Recommended image size 435x635</div>
 
-                <div class="col-md-12">
-                    <label class="form-label">Intro</label>
-                    <input type="text" class="form-control" name="intro" value="<?= $personal_info['intro'] ?>">
-                </div>
+            <button type="submit" class="btn btn-primary mt-3" name="banner_img_update">Update</button>
 
-                <div class="col-md-12">
-                    <label class="form-label">Details About</label>
-                    <textarea class="form-control" name="details_about" id="" cols="30" rows="10"><?= $personal_info['details_about'] ?></textarea>
-                </div>
-
-                <div class="col-md-12">
-                    <label class="form-label">Facebook Link</label>
-                    <input type="text" class="form-control" name="facebook" value="<?= $personal_info['facebook'] ?>">
-                </div>
-
-                <div class="col-md-12">
-                    <label class="form-label">Intro</label>
-                    <input type="text" class="form-control" name="intro" value="<?= $personal_info['intro'] ?>">
-                </div>
-
-                <div class="col-md-12">
-                    <label class="form-label">Intro</label>
-                    <input type="text" class="form-control" name="intro" value="<?= $personal_info['intro'] ?>">
-                </div>
-
-                <div class="col-8">
-                    <button type="submit" class="btn btn-primary" name="protfolio_edit_btn">Update</button>
-                </div>
             </form>
             </div>
+            </div>
+
         </div>
     </div>
 </div>

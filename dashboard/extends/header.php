@@ -106,6 +106,9 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
+
+
+
 </style>
 
 </head>
@@ -136,18 +139,48 @@ input:checked + .slider:before {
                     </li>
 
                     <li>
-                        <a href="../index.php" target='_blank' class="active"><i class="material-icons-two-tone">web</i>website</a>
+                        <a href="../index.php" target='_blank' class="active"><i class="material-icons-two-tone">web</i>Website</a>
                     </li>
                     <li class="<?= basename($_SERVER['PHP_SELF']) == 'profile.php' ? 'active-page' : '' ; ?>">
                         <a href="profile.php" class="active"><i class="material-icons-two-tone">account_box</i>Profile</a>
                     </li>
-                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'banner_update.php' ? 'active-page' : '' ; ?>">
-                        <a href="banner_update.php" class="active"><i class="material-icons-two-tone">perm_media</i>Banner Update</a>
-                    </li>
-                    <li>
-                        <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
-                    </li>
                     
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'personal_info.php' ? 'active-page' : '' ; ?>">
+                        <a href="personal_info.php"><i class="material-icons-two-tone active">badge</i>Personal Information<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'personal_info.php' ? 'active-page' : '' ; ?>">
+                                <a href="personal_info.php">View Info</a>
+                            </li>
+                            <li>
+                                <a href="personal_info_edit.php?edit_id=1">Info Update</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'contact_info.php' ? 'active-page' : '' ; ?>">
+                        <a href="contact_info.php"><i class="material-icons-two-tone active">badge</i>Contact Information<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'contact_info.php' ? 'active-page' : '' ; ?>">
+                                <a href="contact_info.php">View Contact</a>
+                            </li>
+                            <li>
+                                <a href="contact_info_edit.php?edit_id=1">Contact Update</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'skills.php' ? 'active-page' : '' ; ?>">
+                        <a href="skills.php"><i class="material-icons-two-tone active">school</i>Skills<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'skills.php' ? 'active-page' : '' ; ?>">
+                                <a href="skills.php">View Skills</a>
+                            </li>
+                            <li>
+                                <a href="skills_add.php">Add Skills</a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="<?= basename($_SERVER['PHP_SELF']) == 'services.php' ? 'active-page' : '' ; ?>">
                         <a href="services.php"><i class="material-icons-two-tone active">medical_services</i>Services<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
@@ -181,6 +214,18 @@ input:checked + .slider:before {
                             </li>
                             <li>
                                 <a href="protfolio_add.php">Add Profolios</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'testimonialstestimonials.php' ? 'active-page' : '' ; ?>">
+                        <a href="testimonials_add.php"><i class="material-icons-two-tone active">rate_review</i>Testimonials<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'testimonials.php' ? 'active-page' : '' ; ?>">
+                                <a href="testimonials.php">View Testimonials</a>
+                            </li>
+                            <li>
+                                <a href="testimonials_add.php">Add Testimonials</a>
                             </li>
                         </ul>
                     </li>

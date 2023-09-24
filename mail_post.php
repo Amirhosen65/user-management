@@ -44,13 +44,13 @@ if($name && $user_mail && $user_subject && $user_message){
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'amirhosen669222@gmail.com';                     //SMTP username
-    $mail->Password   = 'dfkegpwrkivzbalb';                               //SMTP password
+    $mail->Username   = '';                     //SMTP username
+    $mail->Password   = '';                           //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
     $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('amirhosen669222@gmail.com', 'Web Dreams by AJ Amir');
+    $mail->setFrom('', 'Web Dreams by AJ Amir');
     $mail->addAddress("$user_mail");     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
     $mail->addReplyTo('contact@ajamir.x10.mx');
@@ -74,10 +74,10 @@ if($name && $user_mail && $user_subject && $user_message){
         mysqli_query($db_connect,$insert_message);
 
         $_SESSION['mail_sent'] = "Your message has been sent successfully. Thank you!";
-        header('location: index.php');
+        header('location: index.php#contact');
     }else{
         $_SESSION['mail_sent_err'] = "Please enter required information correctly!";
-        header('location: index.php');
+        header('location: index.php#contact');
     }
 }
 
