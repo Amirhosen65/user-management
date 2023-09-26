@@ -3,11 +3,11 @@
 include('./extends/header.php');
 include('../config/db.php');
 
-$select_query = "SELECT * FROM personal_info WHERE id='1'";
+$select_query = "SELECT * FROM personal_info";
 $connect = mysqli_query($db_connect,$select_query);
 $personal_info = mysqli_fetch_assoc($connect);
 
-$select_img_query = "SELECT * FROM banner_image WHERE id='1'";
+$select_img_query = "SELECT * FROM banner_image";
 $img_connect = mysqli_query($db_connect,$select_img_query);
 $banner_image = mysqli_fetch_assoc($img_connect);
 
@@ -59,30 +59,7 @@ $banner_image = mysqli_fetch_assoc($img_connect);
                         <th scope="row">Details About</th>
                         <td><?= $personal_info['details_about'] ?></td>
                     </tr>
-                    <tr>
-                        <th scope="row">Facebook Link</th>
-                        <td><?= $personal_info['facebook'] ?></td>
-                        </tr>
-                    <tr>
-                        <th scope="row">Twitter Link</th>
-                        <td><?= $personal_info['twitter'] ?></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Linkedin Link</th>
-                        <td><?= $personal_info['linkedin'] ?></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Instagram Link</th>
-                        <td><?= $personal_info['instagram'] ?></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Github Link</th>
-                        <td><?= $personal_info['github'] ?></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Youtube Link</th>
-                        <td><?= $personal_info['youtube'] ?></td>
-                    </tr>
+                    
                 </tbody>
             </table>
                 <a href="personal_info_edit.php?edit_id=<?= $personal_info['id'] ?>" class="btn btn-primary">Edit Info</a>

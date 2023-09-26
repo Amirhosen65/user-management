@@ -71,17 +71,23 @@ if(isset($_POST['protfolio_edit_btn'])){
     $new_name = $id . "-".date('YmdHis').".".$extension;
     $local_path = "../images/protfolio_images/".$new_name;
 
-    if($title && $description){
-        $update_protfolio = "UPDATE protfolio SET title='$title',description='$description' WHERE id='$id'";
-
-        mysqli_query($db_connect,$update_protfolio);
-
-        $_SESSION['protfolio_insert'] = "Protfolio updated successfull!";
-        header('location: protfolios.php');
-    }else{
-        $_SESSION['protfolio_error'] = "Please insert all information!";
-        header('location: protfolio_add.php');
+    if ($title && $description) {
+        // Prepare the SQL statement using a prepared statement
+        $stmt = $db_connect->prepare("UPDATE protfolio SET title=?, description=? WHERE id=?");
+        $stmt->bind_param("ssi", $title, $description, $id);
+    
+        // Execute the statement
+        if ($stmt->execute()) {
+            $_SESSION['protfolio_insert'] = "Portfolio updated successfully!";
+            header('location: protfolios.php');
+        } else {
+            $_SESSION['protfolio_error'] = "Failed to update portfolio!";
+            header('location: protfolio_add.php');
+        }
+    
+        $stmt->close();
     }
+    
 
     $select_img = "SELECT * FROM protfolio WHERE id='$id'";
     $connect = mysqli_query($db_connect,$select_img);

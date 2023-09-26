@@ -94,8 +94,8 @@ $serial = 1;
                                     <img src="../images/protfolio_images/<?= $protfolio['image'] ?>" alt="" style="width: 110px; height: 70px;">
                                 </td>
                                 <td><?= $protfolio['title'] ?></td>
-                                <td><?= $protfolio['description'] ?></td>
-                            
+                                <td><?= implode(' ', array_slice(str_word_count($protfolio['description'], 1), 0, 15)); ?> ...</td>
+
                                 <td>
                                     <?php if($protfolio['status'] == 'active') :?>
                                         <label class="switch">

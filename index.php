@@ -22,6 +22,10 @@ $info_select_query = "SELECT * FROM personal_info";
 $info_connect = mysqli_query($db_connect,$info_select_query);
 $information = mysqli_fetch_assoc($info_connect);
 
+$link_select_query = "SELECT * FROM social_link";
+$social_links = mysqli_query($db_connect,$link_select_query);
+
+
 $skills_select_query = "SELECT * FROM skills WHERE status='active'";
 $skills = mysqli_query($db_connect,$skills_select_query);
 
@@ -34,6 +38,10 @@ $protfolios = mysqli_query($db_connect,$protfolio_select_query);
 $testimonial_select_query = "SELECT * FROM testimonials WHERE status='active'";
 $testimonials = mysqli_query($db_connect,$testimonial_select_query);
 
+$select_query = "SELECT * FROM site_identity";
+$connect = mysqli_query($db_connect,$select_query); 
+$site_identity = mysqli_fetch_assoc($connect);
+
 ?>
 
 <!doctype html>
@@ -42,11 +50,11 @@ $testimonials = mysqli_query($db_connect,$testimonial_select_query);
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>AJ Amir - Personal Portfolio</title>
+        <title><?= $users['name'] ?> - Personal Portfolio</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="shortcut icon" type="image/x-icon" href="./frontend_assets/img/favicon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="./frontend_assets/img/logo/<?= $site_identity['favicon'] ?>">
         <!-- Place favicon.ico in the root directory -->
 
 		<!-- CSS here -->
@@ -72,7 +80,10 @@ $testimonials = mysqli_query($db_connect,$testimonial_select_query);
             right: 20px;
             display: none;
         }
-    </style>
+
+       
+
+        </style>
 
     </head>
     <body class="theme-bg">
@@ -97,8 +108,8 @@ $testimonials = mysqli_query($db_connect,$testimonial_select_query);
                         <div class="col-xl-12">
                             <div class="main-menu">
                                 <nav class="navbar navbar-expand-lg">
-                                    <a href="index.html" class="navbar-brand logo-sticky-none"><img src="./frontend_assets/img/logo/logo.png" alt="Logo"></a>
-                                    <a href="index.html" class="navbar-brand s-logo-none"><img src="./frontend_assets/img/logo/s_logo.png" alt="Logo"></a>
+                                    <a href="index.php" class="navbar-brand logo-sticky-none"><img src="./frontend_assets/img/logo/<?= $site_identity['white_logo'] ?>" alt="Logo" style="height: 30px; width: auto;"></a>
+                                    <a href="index.php" class="navbar-brand s-logo-none"><img src="./frontend_assets/img/logo/<?= $site_identity['logo'] ?>" alt="Logo" style="height: 30px; width: auto;"></a>
                                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                                         data-target="#navbarNav">
                                         <span class="navbar-icon"></span>
@@ -150,10 +161,9 @@ $testimonials = mysqli_query($db_connect,$testimonial_select_query);
                     </div>
                 </div>
                 <div class="social-icon-right mt-20">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                <?php foreach($social_links as $social_link) :?>
+                    <a href="<?= $social_link['link']?>"><i class="<?= $social_link['icon'] ?>"></i></a>
+                    <?php endforeach; ?>
                 </div>
             </div>
             <div class="offcanvas-overly"></div>
@@ -175,10 +185,9 @@ $testimonials = mysqli_query($db_connect,$testimonial_select_query);
                                 <p class="wow fadeInUp" data-wow-delay="0.6s"><?= $information['intro'] ?></p>
                                 <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
                                     <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                        <?php foreach($social_links as $social_link) :?>
+                                            <li><a href="<?= $social_link['link']?>"><i class="<?= $social_link['icon'] ?>"></i></a></li>
+                                        <?php endforeach; ?>
                                     </ul>
                                 </div>
                                 <a href="#" class="btn wow fadeInUp" data-wow-delay="1s">DOWNLOAD CV</a>
@@ -285,12 +294,12 @@ $testimonials = mysqli_query($db_connect,$testimonial_select_query);
                         <div class="col-lg-4 col-md-6 pitem">
                             <div class="speaker-box">
 								<div class="speaker-thumb">
-									<img src="./images/protfolio_images/<?= $protfolio['image'] ?>" alt="img">
+									<img src="./images/protfolio_images/<?= $protfolio['image'] ?>" alt="img" style="object-fit: cover; height: 250px; width: 400px">
 								</div>
 								<div class="speaker-overlay">
 									<span><?= $protfolio['title'] ?></span>
-									<h4><a href="portfolio-single.html"><?= $protfolio['description'] ?></a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
+									<h4><a href="single_page.php?post_id=<?= $protfolio['id'] ?>"><?= implode(' ', array_slice(str_word_count($protfolio['description'], 1), 0, 10)); ?> ...</a></h4>
+									<a href="single_page.php?post_id=<?= $protfolio['id'] ?>" class="arrow-btn">More information <span></span></a>
 								</div>
 							</div>
                         </div>
@@ -451,17 +460,17 @@ $testimonials = mysqli_query($db_connect,$testimonial_select_query);
 
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Name *</label>
-                                    <input type="text" required class="form-control" name="name">
+                                    <input type="text" required class="form-control" name="name" placeholder="Enter your name">
                                     
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Email address *</label>
-                                    <input type="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+                                    <input type="email" required class="form-control" placeholder="Enter your email" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
                                 
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Subject</label>
-                                    <input type="text" required class="form-control" name="subject">
+                                    <input type="text" required class="form-control" name="subject" placeholder="Enter your subject">
                                     
                                 </div>
                                 <div class="mb-3">
@@ -490,7 +499,8 @@ $testimonials = mysqli_query($db_connect,$testimonial_select_query);
                     <div class="row align-items-center">
                         <div class="col-12">
                             <div class="copyright-text text-center">
-                                <p>Copyright© <span>AJ Amir</span> | All Rights Reserved</p>
+                            <p>© Copyright <?= date("Y");?> <span><?= $site_identity['footer'] ?></span> | All Rights Reserved</p>
+
                             </div>
                         </div>
                     </div>

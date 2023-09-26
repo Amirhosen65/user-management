@@ -3,25 +3,39 @@
 session_start();
 include('../config/db.php');
 
+// if (isset($_POST['info_edit_btn'])) {
+//     $id = $_POST['info_id'];
+//     $name = $_POST['name'];
+//     $intro = $_POST['intro'];
+//     $details_about = $_POST['details_about'];
+
+//     if ($name && $intro && $details_about ) {
+        
+//         $update_query = "UPDATE personal_info SET name='$name', intro='$intro', details_about='$details_about' WHERE id='$id'";
+//         mysqli_query($db_connect, $update_query);
+
+//         $_SESSION['info_update'] = "Personal information updated successfully!";
+//         header('location: personal_info.php');
+//     } else {
+//         $_SESSION['info_update_error'] = "Please insert all information!";
+//         header('location: personal_info_edit.php');
+//     }
+// }
+
+
 if (isset($_POST['info_edit_btn'])) {
     $id = $_POST['info_id'];
     $name = $_POST['name'];
     $intro = $_POST['intro'];
     $details_about = $_POST['details_about'];
-    $facebook = $_POST['facebook'];
-    $twitter = $_POST['twitter'];
-    $linkedin = $_POST['linkedin'];
-    $instagram = $_POST['instagram'];
-    $github = $_POST['github'];
-    $youtube = $_POST['youtube'];
 
-    if ($name && $intro && $details_about && $facebook && $twitter && $linkedin && $instagram && $github && $youtube) {
-        
-        $update_query = "UPDATE personal_info SET name=?, intro=?, details_about=?, facebook=?, twitter=?, linkedin=?, instagram=?, github=?, youtube=? WHERE id=?";
+    if ($name && $intro && $details_about) {
+        // Prepare the SQL statement
+        $update_query = "UPDATE personal_info SET name=?, intro=?, details_about=? WHERE id=?";
         $stmt = mysqli_prepare($db_connect, $update_query);
 
         // Bind parameters
-        mysqli_stmt_bind_param($stmt, 'sssssssssi', $name, $intro, $details_about, $facebook, $twitter, $linkedin, $instagram, $github, $youtube, $id);
+        mysqli_stmt_bind_param($stmt, 'sssi', $name, $intro, $details_about, $id);
 
         // Execute the statement
         mysqli_stmt_execute($stmt);
@@ -33,8 +47,6 @@ if (isset($_POST['info_edit_btn'])) {
         header('location: personal_info_edit.php');
     }
 }
-
-
 
 
 
@@ -57,7 +69,7 @@ if(isset($_POST['banner_img_update'])){
     $select_img_1 = "SELECT * FROM banner_image WHERE id='$id'";
     $connect_1 = mysqli_query($db_connect,$select_img_1);
     $old_img_1 = mysqli_fetch_assoc($connect_1);
-    $old_img_1_path = "../frontend_assets/img/banners/".$old_img_1['image'];
+    $old_img_1_path = "../frontend_assets/img/banners/".$old_img_1['image_1'];
 
     if($image_1){
         if(move_uploaded_file($image_1_tmp_name,$local_path_1)){
@@ -82,7 +94,7 @@ if(isset($_POST['banner_img_update'])){
     $select_img_2 = "SELECT * FROM banner_image WHERE id='$id'";
     $connect_2 = mysqli_query($db_connect,$select_img_2);
     $old_img_2 = mysqli_fetch_assoc($connect_2);
-    $old_img_2_path = "../frontend_assets/img/banners/".$old_img_2['image'];
+    $old_img_2_path = "../frontend_assets/img/banners/".$old_img_2['image_2'];
 
     if($image_2){
         if(move_uploaded_file($image_2_tmp_name,$local_path_2)){
@@ -99,3 +111,6 @@ if(isset($_POST['banner_img_update'])){
 
 }
 ?>
+
+
+

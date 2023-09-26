@@ -58,33 +58,6 @@ $personal_info = mysqli_fetch_assoc($connect);
                     <textarea class="form-control" name="details_about" id="" cols="30" rows="10"><?= $personal_info['details_about'] ?></textarea>
                 </div>
 
-                <div class="col-md-12">
-                    <label class="form-label">Facebook Link</label>
-                    <input type="text" class="form-control" name="facebook" value="<?= $personal_info['facebook'] ?>">
-                </div>
-
-                <div class="col-md-12">
-                    <label class="form-label">Twitter Link</label>
-                    <input type="text" class="form-control" name="twitter" value="<?= $personal_info['twitter'] ?>">
-                </div>
-
-                <div class="col-md-12">
-                    <label class="form-label">Linkedin Link</label>
-                    <input type="text" class="form-control" name="linkedin" value="<?= $personal_info['linkedin'] ?>">
-                </div>
-                <div class="col-md-12">
-                    <label class="form-label">Instagram Link</label>
-                    <input type="text" class="form-control" name="instagram" value="<?= $personal_info['instagram'] ?>">
-                </div>
-                <div class="col-md-12">
-                    <label class="form-label">Github Link</label>
-                    <input type="text" class="form-control" name="github" value="<?= $personal_info['github'] ?>">
-                </div>
-                <div class="col-md-12">
-                    <label class="form-label">Youtube Link</label>
-                    <input type="text" class="form-control" name="youtube" value="<?= $personal_info['youtube'] ?>">
-                </div>
-
                 <div class="col-8">
                     <button type="submit" class="btn btn-primary" name="info_edit_btn">Update</button>
                 </div>

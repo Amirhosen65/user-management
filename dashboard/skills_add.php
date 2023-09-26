@@ -38,15 +38,15 @@ include('./extends/header.php');
                 <form class="row g-3" action="skill_post.php" method="POST">
                     <div class="col-md-12">
                         <label class="form-label">Skill Tittle</label>
-                        <input type="text" class="form-control" name="title">
+                        <input type="text" class="form-control" name="title" placeholder="Enter Skill Title">
                     </div>
                     <div class="col-md-12">
                         <label class="form-label">Year</label>
-                        <input type="number" class="form-control" name="year">
+                        <input type="number" class="form-control" name="year" placeholder="Enter year">
                     </div>
                     <div class="col-md-12">
                         <label class="form-label">Skill Percentage (1-100%)</label>
-                        <input type="number" class="form-control" name="percentage">
+                        <input type="number" class="form-control" name="percentage" placeholder="Enter percentage">
                     </div>
                     
                     <div class="col-8">

@@ -2,7 +2,6 @@
 
 include('./extends/header.php');
 
-
 ?>
 
 <div class="row">
@@ -37,17 +36,17 @@ include('./extends/header.php');
 
                 <div class="col-md-12">
                     <label class="form-label">Name</label>
-                    <input type="text" class="form-control" name="name">
+                    <input type="text" class="form-control" name="name" placeholder="Enter Name">
                 </div>
                 <div class="col-md-12">
                     <label class="form-label">Designation</label>
-                    <input type="text" class="form-control" name="designation">
+                    <input type="text" class="form-control" name="designation" placeholder="Enter Designation">
                 </div>
 
                 <div class="col-md-12">
                     <label class="form-label">Testimonial</label>
                     
-                    <textarea class="form-control" name="testimonial" id="" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" name="testimonial" id="" cols="30" rows="10" placeholder="Enter Testimonial"></textarea>
                 </div>
 
                 <div class="col-md-12">

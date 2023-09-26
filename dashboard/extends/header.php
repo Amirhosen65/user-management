@@ -26,7 +26,7 @@ $links = end($explode);
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     
     <!-- Title -->
-    <title>Neptune - Responsive Admin Dashboard Template</title>
+    <title><?= $_SESSION['admin_name'] ?> - Admin Dashboard</title>
 
     <!-- Styles -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -107,8 +107,6 @@ input:checked + .slider:before {
 }
 
 
-
-
 </style>
 
 </head>
@@ -116,7 +114,7 @@ input:checked + .slider:before {
     <div class="app align-content-stretch d-flex flex-wrap">
         <div class="app-sidebar">
             <div class="logo">
-                <a href="index.html" class="logo-icon"><span class="logo-text">Neptune</span></a>
+                <a href="index.html" class="logo-icon"><span class="logo-text">AJAmir</span></a>
                 <div class="sidebar-user-switcher user-activity-online">
                     <a href="#">
                         <img src="../images/profile_images/<?=$_SESSION['admin_profile_img'] ?>" style="border-radius: 50%"/>
@@ -158,13 +156,25 @@ input:checked + .slider:before {
                     </li>
 
                     <li class="<?= basename($_SERVER['PHP_SELF']) == 'contact_info.php' ? 'active-page' : '' ; ?>">
-                        <a href="contact_info.php"><i class="material-icons-two-tone active">badge</i>Contact Information<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <a href="contact_info.php"><i class="material-icons-two-tone active">contact_page</i>Contact Information<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li class="<?= basename($_SERVER['PHP_SELF']) == 'contact_info.php' ? 'active-page' : '' ; ?>">
                                 <a href="contact_info.php">View Contact</a>
                             </li>
                             <li>
                                 <a href="contact_info_edit.php?edit_id=1">Contact Update</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'social_link.php' ? 'active-page' : '' ; ?>">
+                        <a href="social_link.php"><i class="material-icons-two-tone active">thumb_up</i>Social Link<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'social_link.php' ? 'active-page' : '' ; ?>">
+                                <a href="social_link.php">View Link</a>
+                            </li>
+                            <li>
+                                <a href="social_link_add.php">Add Link</a>
                             </li>
                         </ul>
                     </li>
@@ -240,6 +250,10 @@ input:checked + .slider:before {
                                 <a href="user_add.php">Add User</a>
                             </li>
                         </ul>
+                    </li>
+
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'site_identy.php' ? 'active-page' : '' ; ?>">
+                        <a href="site_identy.php" class="active"><i class="material-icons-two-tone">branding_watermark</i>Site Identity</a>
                     </li>
                     
                 </ul>

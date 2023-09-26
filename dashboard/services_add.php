@@ -5,10 +5,6 @@ include('./icons.php');
 
 ?>
 
-
-
-
-
 <div class="row">
     <div class="col">
         <div class="page-description">
@@ -16,7 +12,6 @@ include('./icons.php');
         </div>
     </div>
 </div>
-
 
 <div class="row">
     <div class="col-12">
@@ -39,18 +34,18 @@ include('./icons.php');
             <form class="row g-3" action="service_post.php" method="POST">
                 <div class="col-md-12">
                     <label class="form-label">Service Tittle</label>
-                    <input type="text" class="form-control" name="service_title">
+                    <input type="text" class="form-control" name="service_title" placeholder="Enter Service Tittle">
                 </div>
 
                 <div class="col-md-12">
                     <label class="form-label">Description</label>
-                    <textarea class="form-control" name="service_description" id="" cols="30" rows="5"></textarea>
+                    <textarea class="form-control" name="service_description" id="" cols="30" rows="5" placeholder="Enter Description"></textarea>
                 </div>
 
                 <div class="col-md-12">
                     <label class="form-label">Icon</label>
 
-                    <input type="text" class="form-control" name="icon" id="showThat">
+                    <input type="text" class="form-control" name="icon" id="showThat" placeholder="Choose Icon From Below">
                         <div class="card">
                             <div class="card-body" style="overflow-x: scroll; height:350px;">
                                 <?php foreach($icons as $icon) :?>
