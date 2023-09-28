@@ -2,9 +2,16 @@
 
 session_start();
 
+include('./config/db.php');
+$users_select_query = "SELECT * FROM users";
+$users_connect = mysqli_query($db_connect, $users_select_query);
+$users = mysqli_fetch_assoc($users_connect);
+
+$select_query = "SELECT * FROM site_identity";
+$connect = mysqli_query($db_connect,$select_query); 
+$site_identity = mysqli_fetch_assoc($connect);
+
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +25,7 @@ session_start();
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     
     <!-- Title -->
-    <title>Neptune - Responsive Admin Dashboard Template</title>
+    <title><?= $users['name'] ?> - Admin Log in</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -29,14 +36,13 @@ session_start();
     <link href="./assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="./assets/plugins/perfectscroll/perfect-scrollbar.css" rel="stylesheet">
     <link href="./assets/plugins/pace/pace.css" rel="stylesheet">
-
     
     <!-- Theme Styles -->
     <link href="./assets/css/main.min.css" rel="stylesheet">
     <link href="./assets/css/custom.css" rel="stylesheet">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/neptune.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/neptune.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./frontend_assets/img/<?= $site_identity['favicon'] ?>" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./frontend_assets/img/<?= $site_identity['favicon'] ?>" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -62,7 +68,7 @@ session_start();
         </div>
         <div class="app-auth-container">
             <div class="logo">
-                <a href="index.html">Neptune</a>
+                <a href="index.php"><?= $users['name'] ?></a>
             </div>
             <p class="auth-description">Please Log-in to your account and continue to the dashboard.<br>Don't have an account? <a href="registration.php">Register</a></p>
 
@@ -99,7 +105,6 @@ session_start();
             </div>
             <?php endif; unset($_SESSION['login_failed']); ?>
 
-
             <div class="auth-credentials m-b-xxl position-relative">
                 <label for="signInEmail" class="form-label">Email address</label>
                 <input type="email" class="form-control m-b-md <?= (isset($_SESSION['login_failed'])) ? 'is-invalid' : ' ' ?>" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com" value="<?= (isset($_SESSION['s_email'])) ? $_SESSION['s_email'] : ''; unset($_SESSION['s_email']); ?>" name="email">
@@ -111,7 +116,6 @@ session_start();
                     <input type="password" class="form-control <?= (isset($_SESSION['login_failed'])) ? 'is-invalid' : ' ' ?>" id="id_password" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION['s_password'])) ? $_SESSION['s_password'] : ''; unset($_SESSION['s_password']); ?>" name="password">
                     <i class="far fa-eye" id="togglePassword" style="cursor: pointer; position: absolute; top: 62%; right: 3%"></i>
                 </div>
-
             </div>
             
 
@@ -145,4 +149,3 @@ session_start();
     <script src="./assets/js/custom.js"></script>
 </body>
 </html>
-

@@ -54,7 +54,8 @@ $site_identity = mysqli_fetch_assoc($connect);
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="shortcut icon" type="image/x-icon" href="./frontend_assets/img/logo/<?= $site_identity['favicon'] ?>">
+        <link rel="shortcut icon" type="image/x-icon" href="./frontend_assets/img/<?= $site_identity['favicon'] ?>">
+        <!-- <?= $site_identity['favicon'] ?> -->
         <!-- Place favicon.ico in the root directory -->
 
 		<!-- CSS here -->

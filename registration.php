@@ -2,6 +2,11 @@
 
 session_start();
 
+include('./config/db.php');
+
+$users_select_query = "SELECT * FROM users";
+$users_connect = mysqli_query($db_connect, $users_select_query);
+$users = mysqli_fetch_assoc($users_connect);
 
 ?>
 
@@ -20,7 +25,7 @@ session_start();
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     
     <!-- Title -->
-    <title>Neptune - Responsive Admin Dashboard Template</title>
+    <title><?= $users['name'] ?> - Admin Dashboard Log in</title>
 
     <!-- Styles -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -61,7 +66,7 @@ session_start();
         </div>
         <div class="app-auth-container">
             <div class="logo">
-                <a href="index.html">Neptune</a>
+                <a href="index.php"><?= $users['name'] ?></a>
             </div>
             <p class="auth-description">Please enter your credentials to create an account.<br>Already have an account? <a href="login.php">Log In</a></p>
 

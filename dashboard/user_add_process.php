@@ -85,18 +85,22 @@ if($name && $email && $password && $con_password) {
 
         header("location: user_add.php");
 
-
-
-    
-
     }else{
         $_SESSION['registraion_failed'] = "This email allready exist!";
         header("location: user_add.php");
     }
-
-
 }
 
+
+if(isset($_GET['delete_id'])){
+    $id = $_GET['delete_id'];
+
+    $delete_query = "DELETE FROM users WHERE id='$id'";
+    mysqli_query($db_connect,$delete_query);
+
+    $_SESSION['user_delete'] = "User deleted successfull!";
+    header('location: users.php');    
+}
     
 
 ?>
