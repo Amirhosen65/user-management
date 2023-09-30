@@ -228,7 +228,7 @@ input:checked + .slider:before {
                         </ul>
                     </li>
 
-                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'testimonialstestimonials.php' ? 'active-page' : '' ; ?>">
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'testimonials.php' ? 'active-page' : '' ; ?>">
                         <a href="testimonials_add.php"><i class="material-icons-two-tone active">rate_review</i>Testimonials<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li class="<?= basename($_SERVER['PHP_SELF']) == 'testimonials.php' ? 'active-page' : '' ; ?>">
@@ -236,6 +236,18 @@ input:checked + .slider:before {
                             </li>
                             <li>
                                 <a href="testimonials_add.php">Add Testimonials</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="<?= basename($_SERVER['PHP_SELF']) == 'brands.php' ? 'active-page' : '' ; ?>">
+                        <a href="brand_add.php"><i class="material-icons-two-tone active">fact_check</i>Brands<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li class="<?= basename($_SERVER['PHP_SELF']) == 'brands.php' ? 'active-page' : '' ; ?>">
+                                <a href="brands.php">View Brand</a>
+                            </li>
+                            <li>
+                                <a href="brand_add.php">Add Brand</a>
                             </li>
                         </ul>
                     </li>

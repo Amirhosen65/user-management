@@ -42,6 +42,9 @@ $select_query = "SELECT * FROM site_identity";
 $connect = mysqli_query($db_connect,$select_query); 
 $site_identity = mysqli_fetch_assoc($connect);
 
+$brand_select = "SELECT * FROM brands";
+$brands = mysqli_query($db_connect,$brand_select);
+
 ?>
 
 <!doctype html>
@@ -379,36 +382,13 @@ $site_identity = mysqli_fetch_assoc($connect);
             <div class="barnd-area pt-100 pb-100">
                 <div class="container">
                     <div class="row brand-active">
+                    <?php foreach ($brands as $brand) : ?>
                         <div class="col-xl-2">
                             <div class="single-brand">
-                                <img src="./frontend_assets/img/brand/brand_img01.png" alt="img">
+                                <img src="./images/brands_images/<?= $brand['image'] ?>" alt="img">
                             </div>
                         </div>
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="./frontend_assets/img/brand/brand_img02.png" alt="img">
-                            </div>
-                        </div>
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="./frontend_assets/img/brand/brand_img03.png" alt="img">
-                            </div>
-                        </div>
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="./frontend_assets/img/brand/brand_img04.png" alt="img">
-                            </div>
-                        </div>
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="./frontend_assets/img/brand/brand_img05.png" alt="img">
-                            </div>
-                        </div>
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="./frontend_assets/img/brand/brand_img03.png" alt="img">
-                            </div>
-                        </div>
+                        <?php endforeach; ?> 
                     </div>
                 </div>
             </div>
